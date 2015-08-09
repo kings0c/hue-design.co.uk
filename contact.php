@@ -1,6 +1,5 @@
 <?php
-$post = $_POST;
-if( count($post) > 1 ) { 
+if( count($_POST) > 1 ) { 
     require_once('lib/recaptchalib.php');
     $privatekey = "6LeHrv0SAAAAAPBx4UwnKMgkCC5DJ4tRMWvHUaDL";
     $resp = recaptcha_check_answer ($privatekey,
@@ -38,6 +37,7 @@ if( count($post) > 1 ) {
         mail($to, $subject, $message, $headers);
 
         echo "<script type='text/javascript'>alert('Your message has been successfully sent." . "');</script>";
-        //echo  var_dump($post);
-        header("Location: http://www.hue-design.co.uk?contact=1");
+        
+        header("Location: https://www.hue-design.co.uk?contact=1");
+    }
 }
