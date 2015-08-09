@@ -1,13 +1,41 @@
-$(window).load(function() {
+$(document).ready(function() {
+    $('#section1').css({backgroundSize: "cover"});
+    
+    $('#contact-form #submit-form').click(function(e) {
+        $('#captcha-form').modal();
+        $('#captcha-form').show();
 
-	//Append google fonts to head
-	//$('head').append("<link href='http://fonts.googleapis.com/css?family=Lato:100,400,700,100italic' rel='stylesheet' type='text/css'>");
+        $('#captcha-form').append("<input type='hidden' name='name' value='" + $('#contact-form #name').val() + "'>");
+        $('#captcha-form').append("<input type='hidden' name='phone' value='" + $('#contact-form #phone').val() + "'>");
+        $('#captcha-form').append("<input type='hidden' name='email' value='" + $('#contact-form #email').val() + "'>");
+        $('#captcha-form').append("<input type='hidden' name='message' value='" + $('#contact-form #message').val() + "'>");
 
-	//Show Navigation Button (1 column layout)
+        $('#captcha-form').append("<input id='captcha-submit' type='submit' name='submit' value='Submit'>");
+
+        Recaptcha.create("6LeHrv0SAAAAAIhm0g-pOgf-qDfF_z5c5NfZg0Y5",
+        "recaptcha",
+        {
+          theme: "red",
+          callback: Recaptcha.focus_response_field
+        });
+        
+        e.preventDefault();
+        return false;
+    });
+    
+    $('#captcha-form').submit(function() {
+        $('#captcha-form').append("<input type='hidden' name='recaptcha_challenge_field' value='" + Recaptcha.get_challenge() + "'>");
+        $('#captcha-form').append("<input type='hidden' name='recaptcha_response_field' value='" + Recaptcha.get_response() + "'>");
+    });
+    
+    //Show Navigation Button (1 column layout)
 	$('#show-nav').click(function() {
 		$('#header ul').toggle(500);
 	});
+});
 
+$(window).load(function() {
+    
 	//Animations
 	var controller = $.superscrollorama({
 		triggerAtCenter : true,

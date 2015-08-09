@@ -2,3 +2,7 @@ blog/
 jumanji/
 phpMyAdmin/
 test/
+node_modules/
+.sass-cache/
+application/
+system/
