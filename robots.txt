@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: http://www.hue-design.co.uk/sitemap.xml
